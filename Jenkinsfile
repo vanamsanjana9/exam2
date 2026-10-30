@@ -3,9 +3,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Run Selenium Tests with pytest') {
+        stage('Run Tests') {
             steps {
-                echo "Running Selenium Tests using pytest"
+                echo "Running Selenium Tests"
                 bat 'pip install -r requirements.txt'
                 bat 'start /B python app.py'
                 bat 'ping 127.0.0.1 -n 5 > nul'
@@ -13,7 +13,7 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
                 echo "Build Docker Image"
                 bat 'docker build -t seleniumdemapp:v1 .'
@@ -40,7 +40,7 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
+        stage('Deploy') {
             steps {
                 bat 'kubectl apply -f deployment.yaml --validate=false'
                 bat 'kubectl apply -f service.yaml'
