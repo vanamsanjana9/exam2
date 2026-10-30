@@ -15,7 +15,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo "Build Docker Image"
+                echo "Build"
                 bat 'docker build -t seleniumdemapp:v1 .'
             }
         }
